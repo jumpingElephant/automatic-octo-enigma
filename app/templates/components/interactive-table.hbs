@@ -1,0 +1,23 @@
+interactive table
+
+{{#if isLoading}}
+    <div class="table loader">
+        <div class="ui active centered inline text loader">Loading</div>
+    </div>
+{{else}}
+    {{#ui-table table class="bottom attached" rowSelection=true onHeaderClick=(action "sortColumn") onRowClick=(action "selectRow") onCellDoubleClick=(action "doubleClickCell") as |t| }}
+        {{t.head}}
+        {{#t.body}}
+            No results found
+        {{/t.body}}
+        {{#t.foot}}
+            <tr>
+                <th colspan="{{table.visibleColumns.length}}">
+                    <span>
+            {{table.selectedRows.length}} rows selected
+          </span> {{table-pagination class="right floated" totalPages=pageCount currentPage=page onPageChange=(action "navigateToPage")}}
+                </th>
+            </tr>
+        {{/t.foot}}
+    {{/ui-table}}
+{{/if}}

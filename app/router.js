@@ -7,6 +7,11 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('automobiles', function() {
+    this.route('show', { path: '/:automobileId' });
+  });
+  this.route('about');
+  this.route('contact');
 });
 
 export default Router;

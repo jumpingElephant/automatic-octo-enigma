@@ -1,5 +1,36 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    {{#link-to 'index' class="navbar-brand" }}
+        <span>Meine Autos</span>
+    {{/link-to}}
 
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                {{#link-to 'about' class="nav-link" }}
+                    <span>Über Uns</span>
+                {{/link-to}}
+            </li>
+            <li>
+                {{#link-to 'contact' class="nav-link" }}
+                    <span>Kontakt</span>
+                {{/link-to}}
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+{{!-- <div class="jumbotron">
+    <div class="container">
+        <h1>Mein Auto</h1>
+    </div>
+</div>
+ --}}
 {{outlet}}
+
+<footer>
+    <p>&copy; jumpingElephant 2017</p>
+</footer>

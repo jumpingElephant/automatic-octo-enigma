@@ -1,0 +1,25 @@
+<i>Auto-Index</i>
+<div class="jumbotron">
+    <div class="container">
+        <h1>Meine Autos</h1>
+    </div>
+</div>
+
+<div class="d-flex flex-wrap">
+    {{#each model as |automobile|}}
+        {{#link-to 'automobiles.show' automobile class="btn btn-primary btn-lg" role="button" }}
+            <div>
+                <div>{{automobile.displayName}}</div>
+                {{fa-icon "car" size=3}}
+            </div>
+        {{/link-to}}
+    {{/each}}
+    {{#link-to 'contact' class="btn btn-secondary btn-lg" role="button" }}
+        <div>
+            {{fa-icon "plus" size=3}}
+            <div>
+                <small>Hinzufügen</small>
+            </div>
+        </div>
+    {{/link-to}}
+</div>
