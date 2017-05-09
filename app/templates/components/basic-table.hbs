@@ -1,1 +1,31 @@
-basic-table {{ui-table table}}
+<h3>basic-table</h3>
+
+{{#if isLoading}}
+    <div class="table loader">
+        <div class="ui active centered inline text loader">Loading</div>
+    </div>
+{{else}}
+    <blockquote class="blockquote">
+        <p>total={{totalNumberOfRows}}, page={{page}}</p>
+    </blockquote>
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    {{#each columns as |column|}}
+                        <th>{{column.label}}</th>
+                    {{/each}}
+                </tr>
+            </thead>
+            <tbody>
+                {{#each rows as |row|}}
+                    <tr>
+                        {{#each columns as |column|}}
+                            <td>{{get row column.valuePath}}</td>
+                        {{/each}}
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+{{/if}}
