@@ -7,8 +7,8 @@ export default Ember.Component.extend({
   isLoading: false,
   rows: [],
   selectedRows: [],
-  page: 1,
-  rowsPerPage: 3,
+  currentPage: 0,
+  rowsPerPage: 2,
 
   init() {
     this._super(...arguments);
@@ -44,6 +44,15 @@ export default Ember.Component.extend({
     return cols;
   }),
 
+  visibleRows: Ember.computed('rows', 'currentPage', 'rowsPerPage', function() {
+    var currentPage = this.get('currentPage');
+    var rowsPerPage = this.get('rowsPerPage');
+
+    var start = currentPage * rowsPerPage;
+    var end = start + rowsPerPage;
+    return this.get('rows').slice(start, end);
+  }),
+
   totalNumberOfRows: Ember.computed('rows', function() {
     return this.get('rows').length;
   }),
@@ -64,7 +73,7 @@ export default Ember.Component.extend({
     },
 
     navigateToPage(pageNumber) {
-      this.set('page', pageNumber);
+      this.set('currentPage', pageNumber);
     }
   }
 });

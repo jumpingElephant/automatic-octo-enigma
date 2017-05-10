@@ -6,7 +6,7 @@
     </div>
 {{else}}
     <blockquote class="blockquote">
-        <p>total={{totalNumberOfRows}}, page={{page}}, numberOfPages={{numberOfPages}}</p>
+        <p>total={{totalNumberOfRows}}, currentPage={{currentPage}}, numberOfPages={{numberOfPages}}</p>
     </blockquote>
     <div>
         <table class="table table-striped">
@@ -18,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                {{#each rows as |row|}}
+                {{#each visibleRows as |row|}}
                     <tr>
                         {{#each columns as |column|}}
                             <td>{{get row column.valuePath}}</td>
@@ -29,20 +29,20 @@
         </table>
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
-                <li class="page-item">
-                    <a class="page-link" href="#">
+                <li class="page-item {{if (lte currentPage 0) 'disabled'}}">
+                    <a class="page-link" {{action "navigateToPage" (sub currentPage 1)}} href="#">
                         <span>&laquo;</span>
                     </a>
                 </li>
-                {{#each (iterate numberOfPages offset=1) as |item|}}
-                    <li class="page-item">
-                        <a class="page-link" {{action "navigateToPage" item}} href="#">
-                            <span>{{item}}</span>
+                {{#each (iterate numberOfPages) as |page|}}
+                    <li class="page-item {{if (eq page currentPage) 'active'}}">
+                        <a class="page-link" {{action "navigateToPage" page}} href="#">
+                            <span>{{add page 1}}</span>
                         </a>
                     </li>
                 {{/each}}
-                <li class="page-item">
-                    <a class="page-link" href="#">
+                <li class="page-item {{if (gte currentPage (sub numberOfPages 1)) 'disabled'}}">
+                    <a class="page-link" {{action "navigateToPage" (add currentPage 1)}} href="#">
                         <span>&raquo;</span>
                     </a>
                 </li>
