@@ -8,6 +8,7 @@ export default Ember.Component.extend({
   rows: [],
   selectedRows: [],
   page: 1,
+  rowsPerPage: 3,
 
   init() {
     this._super(...arguments);
@@ -47,6 +48,16 @@ export default Ember.Component.extend({
     return this.get('rows').length;
   }),
 
+  numberOfPages: Ember.computed('rows', 'rowsPerPage', function() {
+    var rows = this.get('rows');
+    if (rows) {
+      var rowsPerPage = this.get('rowsPerPage');
+      return Math.ceil(rows.length / rowsPerPage);
+    } else {
+      return 1;
+    }
+  }),
+
   actions: {
     selectRow(e, row /* , table */ ) {
       row.toggleProperty('selected');
@@ -54,7 +65,6 @@ export default Ember.Component.extend({
 
     navigateToPage(pageNumber) {
       this.set('page', pageNumber);
-      this.fetchRecords();
     }
   }
 });

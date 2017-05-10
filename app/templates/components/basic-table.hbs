@@ -6,7 +6,7 @@
     </div>
 {{else}}
     <blockquote class="blockquote">
-        <p>total={{totalNumberOfRows}}, page={{page}}</p>
+        <p>total={{totalNumberOfRows}}, page={{page}}, numberOfPages={{numberOfPages}}</p>
     </blockquote>
     <div>
         <table class="table table-striped">
@@ -27,5 +27,26 @@
                 {{/each}}
             </tbody>
         </table>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        <span>&laquo;</span>
+                    </a>
+                </li>
+                {{#each (iterate numberOfPages offset=1) as |item|}}
+                    <li class="page-item">
+                        <a class="page-link" {{action "navigateToPage" item}} href="#">
+                            <span>{{item}}</span>
+                        </a>
+                    </li>
+                {{/each}}
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        <span>&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
 {{/if}}

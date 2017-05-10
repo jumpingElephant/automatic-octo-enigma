@@ -41,6 +41,16 @@ export default function() {
         mileage: 43,
         quantity: 2,
         price: 3
+      }, {
+        date: '2017-04-19',
+        mileage: 44,
+        quantity: 2,
+        price: 3
+      }, {
+        date: '2017-04-20',
+        mileage: 45,
+        quantity: 2,
+        price: 3
       }]
     }
   }, {
