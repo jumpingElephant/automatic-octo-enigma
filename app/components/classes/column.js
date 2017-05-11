@@ -23,7 +23,7 @@ export default Ember.Object.extend({
    * @property label
    * @type String
    */
-  valuePath: null
+  valuePath: null,
     /*,
 
       // /**
@@ -38,17 +38,17 @@ export default Ember.Object.extend({
       //  */
     // headerType: 'default',
 
-  // /**
-  //  * Type of the cells for this column. The type is mapped to a component name
-  //  * prefixed with `table-cell/`. To create custom cell types, you can create
-  //  * a new component named `table-cell/my-custom-cell` specify it here as
-  //  * `cellType: 'my-custom-cell'`.
-  //  *
-  //  * @property cellType
-  //  * @type String
-  //  * @default 'default'
-  //  */
-  // cellType: 'default',
+  /**
+   * Type of the cells for this column. The type is mapped to a component name
+   * prefixed with `table-cell/`. To create custom cell types, you can create
+   * a new component named `table-cell/my-custom-cell` specify it here as
+   * `cellType: 'my-custom-cell'`.
+   *
+   * @property cellType
+   * @type String
+   * @default 'default'
+   */
+    cellType: 'default'
 
   // /**
   //  * Whether the column can be hidden.

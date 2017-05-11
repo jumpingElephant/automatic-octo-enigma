@@ -20,8 +20,16 @@ export default Ember.Component.extend({
     return this.get('store').findRecord('automobile', this.automobileId)
       .then((records) => {
         var bills = records.get('bills');
-        var rows = bills.map(function(item) {
-          return Row.create(item);
+        var rows = bills.sort(function(elem, other) {
+          return other.mileage - elem.mileage;
+        }).map(function(elem, idx, array) {
+          if (idx < array.length - 1) {
+            elem.distance = elem.mileage - array[idx + 1].mileage;
+          }
+          elem.pricePerLiter = elem.price / elem.quantity;
+          return elem;
+        }).map(function(elem) {
+          return Row.create(elem);
         });
         this.set('rows', rows);
       }).finally(() => {
@@ -32,10 +40,23 @@ export default Ember.Component.extend({
   columns: Ember.computed(function() {
     var cols = [{
         label: 'Datum',
-        valuePath: 'date'
+        valuePath: 'date',
+        cellType: 'date'
       }, {
         label: 'Kilometerstand',
         valuePath: 'mileage'
+      }, {
+        label: 'Distanz',
+        valuePath: 'distance'
+      }, {
+        label: 'Füllmenge',
+        valuePath: 'quantity'
+      }, {
+        label: 'Preis',
+        valuePath: 'price'
+      }, {
+        label: 'Preis je Liter',
+        valuePath: 'pricePerLiter'
       }]
       .map((item) => {
         var col = Column.create(item);

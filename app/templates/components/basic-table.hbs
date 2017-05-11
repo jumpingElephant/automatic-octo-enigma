@@ -21,7 +21,7 @@
                 {{#each visibleRows as |row|}}
                     <tr>
                         {{#each columns as |column|}}
-                            <td>{{get row column.valuePath}}</td>
+                            <td>{{format column.cellType (get row column.valuePath)}}</td>
                         {{/each}}
                     </tr>
                 {{/each}}
