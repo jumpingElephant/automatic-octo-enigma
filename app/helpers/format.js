@@ -6,6 +6,10 @@ export function format(params /*, hash*/ ) {
   var value = params[1];
   var postfix = params[2];
 
+  if (!value) {
+    return "";
+  }
+
   var s;
 
   switch (type) {
