@@ -41,22 +41,52 @@ export default Ember.Component.extend({
     var cols = [{
         label: 'Datum',
         valuePath: 'date',
-        cellType: 'date'
+        cells: {
+          type: 'date',
+          pattern: 'DD.MM.YYYY'
+        }
       }, {
         label: 'Kilometerstand',
-        valuePath: 'mileage'
+        valuePath: 'mileage',
+        cells: {
+          type: 'number',
+          postfix: ' km',
+          thousSep: '.'
+        }
       }, {
         label: 'Distanz',
-        valuePath: 'distance'
+        valuePath: 'distance',
+        cells: {
+          type: 'number',
+          postfix: ' km'
+        }
       }, {
         label: 'Füllmenge',
-        valuePath: 'quantity'
+        valuePath: 'quantity',
+        cells: {
+          type: 'number',
+          digits: 2,
+          decSep: ',',
+          postfix: ' l'
+        }
       }, {
         label: 'Preis',
-        valuePath: 'price'
+        valuePath: 'price',
+        cells: {
+          type: 'number',
+          digits: 2,
+          decSep: ',',
+          postfix: ' €'
+        }
       }, {
         label: 'Preis je Liter',
-        valuePath: 'pricePerLiter'
+        valuePath: 'pricePerLiter',
+        cells: {
+          type: 'number',
+          digits: 3,
+          decSep: ',',
+          postfix: ' €'
+        }
       }]
       .map((item) => {
         var col = Column.create(item);

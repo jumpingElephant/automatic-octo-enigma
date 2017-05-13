@@ -21,7 +21,13 @@
                 {{#each visibleRows as |row|}}
                     <tr>
                         {{#each columns as |column|}}
-                            <td>{{format column.cellType (get row column.valuePath)}}</td>
+                            {{#if (eq column.cells.type 'date')}}
+                                <td>{{moment-format (get row column.valuePath) column.cells.pattern}}</td>
+                                {{else if (eq column.cells.type 'number')}}
+                                <td>{{number-format (get row column.valuePath) column.cells.postfix digits=column.cells.digits decSep=column.cells.decSep thousSep=column.cells.thousSep}}{{column.valuePostfix}}</td>
+                            {{else}}
+                                <td>{{get row column.valuePath}}</td>
+                            {{/if}}
                         {{/each}}
                     </tr>
                 {{/each}}
