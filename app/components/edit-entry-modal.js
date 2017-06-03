@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   visible: false,
+  closeOnBackdropClick: true,
 
   actions: {
     launchModal() {
@@ -20,6 +21,11 @@ export default Ember.Component.extend({
     },
     cancelConfirm() {
       this.set('visible', false);
+    },
+    backdropClick() {
+      if (this.get('closeOnBackdropClick')) {
+        this.get('actions')['cancelConfirm'].apply(this);
+      }
     }
   }
 });
